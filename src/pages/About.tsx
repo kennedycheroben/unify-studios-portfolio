@@ -4,8 +4,33 @@ import kenImage from "@/assets/ken.png";
 import logo from "@/assets/logo.png";
 
 const skills = {
-  "Web Development": ["HTML5", "CSS3", "JavaScript", "SQL", "Automation Workflows", "Responsive Design"],
-  "Graphic Design": ["Logo Design", "Poster Design", "Flyer Design", "Branding", "Motion Graphics", "Visual Identity"],
+  "Web Development": [
+    { name: "React", icon: "fa-brands fa-react" },
+    { name: "TypeScript", icon: "fa-brands fa-js" },
+    { name: "HTML5", icon: "fa-brands fa-html5" },
+    { name: "CSS3", icon: "fa-brands fa-css3-alt" },
+    { name: "JavaScript", icon: "fa-brands fa-js" },
+    { name: "Tailwind CSS", icon: "fa-solid fa-wind" },
+    { name: "Node.js", icon: "fa-brands fa-node-js" },
+    { name: "SQL", icon: "fa-solid fa-database" },
+    { name: "Git & GitHub", icon: "fa-brands fa-github" },
+    { name: "Vite", icon: "fa-solid fa-bolt" },
+    { name: "Responsive Design", icon: "fa-solid fa-mobile-screen" },
+    { name: "REST APIs", icon: "fa-solid fa-plug" },
+    { name: "Framer Motion", icon: "fa-solid fa-wand-magic-sparkles" },
+    { name: "Automation Workflows", icon: "fa-solid fa-gears" },
+    { name: "React Router", icon: "fa-solid fa-route" },
+  ],
+  "Graphic Design": [
+    { name: "Logo Design", icon: "fa-solid fa-pen-nib" },
+    { name: "Poster Design", icon: "fa-solid fa-image" },
+    { name: "Flyer Design", icon: "fa-solid fa-file-image" },
+    { name: "Branding", icon: "fa-solid fa-copyright" },
+    { name: "Motion Graphics", icon: "fa-solid fa-film" },
+    { name: "Visual Identity", icon: "fa-solid fa-eye" },
+    { name: "UI/UX Design", icon: "fa-solid fa-palette" },
+    { name: "Typography", icon: "fa-solid fa-font" },
+  ],
 };
 
 const About = () => {
@@ -23,11 +48,11 @@ const About = () => {
         {/* Bio Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <AnimatedSection direction="left">
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden glow-border">
-                <img src={kenImage} alt="Kennedy Cheroben" className="w-full aspect-[3/4] object-cover" />
+            <div className="relative group">
+              <div className="rounded-2xl overflow-hidden glow-border transition-shadow duration-500 group-hover:shadow-[0_0_40px_hsl(217_91%_60%/0.3)]">
+                <img src={kenImage} alt="Kennedy Cheroben" className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-xl overflow-hidden border-2 border-primary animate-float">
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-xl overflow-hidden border-2 border-primary animate-float transition-transform duration-300 group-hover:scale-110">
                 <img src={logo} alt="Unify Studios" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -61,22 +86,27 @@ const About = () => {
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {Object.entries(skills).map(([category, items], catIdx) => (
-            <AnimatedSection key={category} delay={catIdx * 0.15} direction={catIdx === 0 ? "left" : "right"}>
-              <div className="glass-card p-8 hover-lift">
-                <h3 className="font-display text-lg font-semibold text-primary mb-6">{category}</h3>
+            <AnimatedSection key={category} delay={catIdx * 0.1} direction={catIdx === 0 ? "left" : "right"}>
+              <div className="glass-card p-8 hover-lift group">
+                <h3 className="font-display text-lg font-semibold text-primary mb-6 flex items-center gap-3">
+                  <i className={`${catIdx === 0 ? "fa-solid fa-code" : "fa-solid fa-palette"} text-xl`} />
+                  {category}
+                </h3>
                 <div className="flex flex-wrap gap-3">
                   {items.map((skill, i) => (
                     <motion.span
-                      key={skill}
+                      key={skill.name}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.08 }}
+                      transition={{ delay: i * 0.04, duration: 0.3 }}
                       viewport={{ once: true }}
-                      className="px-4 py-2 text-sm rounded-lg bg-secondary border border-border/50 text-foreground hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 cursor-default"
+                      whileHover={{ scale: 1.08, y: -2 }}
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-secondary border border-border/50 text-foreground hover:border-primary/50 hover:bg-primary/10 hover:shadow-[0_4px_15px_hsl(217_91%_60%/0.15)] transition-all duration-300 cursor-default"
                     >
-                      {skill}
+                      <i className={`${skill.icon} text-primary text-xs`} />
+                      {skill.name}
                     </motion.span>
                   ))}
                 </div>

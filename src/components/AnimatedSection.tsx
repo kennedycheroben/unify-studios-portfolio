@@ -31,7 +31,7 @@ const AnimatedSection = ({ children, className = "", delay = 0, direction = "up"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
-      transition={{ duration: 0.7, delay, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay: delay * 0.6, ease: "easeOut" }}
       className={className}
     >
       {children}
