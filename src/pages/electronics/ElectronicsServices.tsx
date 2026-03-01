@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Shield, Cpu, Monitor, Smartphone, Zap, Headphones } from "lucide-react";
+import { Shield, Cpu, Monitor, Smartphone, Zap, Headphones, HardDrive, Wifi } from "lucide-react";
 import { electronicsServices } from "./electronicsData";
 import { Link } from "react-router-dom";
 
-const iconMap: Record<string, any> = { Shield, Cpu, Monitor, Smartphone, Zap, Headphones };
+const iconMap: Record<string, any> = { Shield, Cpu, Monitor, Smartphone, Zap, Headphones, HardDrive, Wifi };
 
 const ElectronicsServices = () => (
   <section className="max-w-6xl mx-auto px-6 py-16">
