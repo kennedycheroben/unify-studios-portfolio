@@ -122,7 +122,7 @@ const Portfolio = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                transition={{ duration: 0.25, delay: i * 0.03 }}
                 className="group"
               >
                 <div className="rounded-xl overflow-hidden border border-border/30 hover-lift bg-card/30">
