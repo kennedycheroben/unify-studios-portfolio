@@ -128,6 +128,62 @@ const Index = () => {
               </div>
             </AnimatedSection>
           </div>
+      </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section-padding bg-secondary/20">
+        <div className="container mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Client Testimonials</h2>
+            <p className="text-muted-foreground max-w-md mx-auto">What people say about working with me</p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Sarah Mitchell",
+                role: "CEO, BrightPath Agency",
+                text: "Kennedy delivered an exceptional website that exceeded our expectations. His attention to detail and creative vision transformed our brand's online presence.",
+                stars: 5,
+              },
+              {
+                name: "James Ochieng",
+                role: "Founder, TechWave Kenya",
+                text: "Working with Unify Studios was seamless. The e-commerce platform he built boosted our sales by 40% in the first quarter. Highly recommend!",
+                stars: 5,
+              },
+              {
+                name: "Amina Hassan",
+                role: "Marketing Director, Bloom Co.",
+                text: "From branding to web development, Kennedy handled everything with professionalism. The final product was polished, modern, and exactly what we needed.",
+                stars: 4,
+              },
+            ].map((t, i) => (
+              <AnimatedSection key={i} delay={i * 0.1} direction={i === 0 ? "left" : i === 2 ? "right" : "up"}>
+                <div className="glass-card p-8 hover-lift h-full flex flex-col">
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <i
+                        key={s}
+                        className={`fa-star text-sm ${s < t.stars ? "fa-solid text-[hsl(var(--gold))]" : "fa-regular text-muted-foreground/40"}`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">"{t.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                      <i className="fa-solid fa-user text-primary text-sm" />
+                    </div>
+                    <div>
+                      <p className="font-display font-semibold text-sm">{t.name}</p>
+                      <p className="text-muted-foreground text-xs">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
     </>
