@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -41,13 +40,13 @@ const Footer = () => {
             <h4 className="font-display text-sm font-semibold uppercase tracking-widest text-primary">Get In Touch</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
               <a href="mailto:kennedycheroben001@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                <Mail size={14} /> kennedycheroben001@gmail.com
+                <i className="fa-solid fa-envelope text-xs" /> kennedycheroben001@gmail.com
               </a>
               <a href="https://wa.me/254792399815" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                <Phone size={14} /> +254 792 399 815
+                <i className="fa-brands fa-whatsapp text-xs" /> +254 792 399 815
               </a>
               <p className="flex items-center gap-2">
-                <MapPin size={14} /> Kenya
+                <i className="fa-solid fa-location-dot text-xs" /> Kenya
               </p>
             </div>
           </div>

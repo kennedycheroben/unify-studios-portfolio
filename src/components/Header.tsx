@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
 
@@ -60,7 +59,7 @@ const Header = () => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-foreground p-2"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          <i className={`fa-solid ${mobileOpen ? "fa-xmark" : "fa-bars"} text-xl`} />
         </button>
       </div>
 

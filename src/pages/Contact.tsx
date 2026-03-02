@@ -1,5 +1,4 @@
 import { useState, FormEvent } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { toast } from "sonner";
@@ -15,7 +14,6 @@ const Contact = () => {
       return;
     }
     setLoading(true);
-    // Simulate form submission (Supabase can be connected later)
     await new Promise((r) => setTimeout(r, 1000));
     toast.success("Message sent! I'll get back to you soon.");
     setForm({ name: "", email: "", subject: "", message: "" });
@@ -35,27 +33,26 @@ const Contact = () => {
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-          {/* Contact Info */}
           <AnimatedSection direction="left" className="lg:col-span-2 space-y-6">
             <div className="glass-card p-6 space-y-6">
               <h3 className="font-display text-lg font-semibold">Contact Info</h3>
               <div className="space-y-5 text-sm">
                 <a href="mailto:kennedycheroben001@gmail.com" className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                  <Mail size={18} className="text-primary mt-0.5 shrink-0" />
+                  <i className="fa-solid fa-envelope text-primary mt-1" />
                   <div>
                     <p className="font-medium text-foreground">Email</p>
                     <p>kennedycheroben001@gmail.com</p>
                   </div>
                 </a>
                 <a href="https://wa.me/254792399815" target="_blank" rel="noreferrer" className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                  <Phone size={18} className="text-primary mt-0.5 shrink-0" />
+                  <i className="fa-brands fa-whatsapp text-primary mt-1" />
                   <div>
                     <p className="font-medium text-foreground">WhatsApp</p>
                     <p>+254 792 399 815</p>
                   </div>
                 </a>
                 <div className="flex items-start gap-3 text-muted-foreground">
-                  <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
+                  <i className="fa-solid fa-location-dot text-primary mt-1" />
                   <div>
                     <p className="font-medium text-foreground">Location</p>
                     <p>Kenya</p>
@@ -70,11 +67,10 @@ const Contact = () => {
               rel="noreferrer"
               className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[hsl(142,70%,45%)] text-[hsl(0,0%,100%)] font-display font-semibold text-sm hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_30px_hsl(142_70%_45%/0.3)]"
             >
-              <MessageCircle size={18} /> Chat on WhatsApp
+              <i className="fa-brands fa-whatsapp text-lg" /> Chat on WhatsApp
             </a>
           </AnimatedSection>
 
-          {/* Form */}
           <AnimatedSection direction="right" className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="glass-card p-8 space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
@@ -126,7 +122,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-display font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-[0_0_30px_hsl(217_91%_60%/0.4)] transition-all duration-300 disabled:opacity-50"
               >
-                {loading ? "Sending..." : <><Send size={16} /> Send Message</>}
+                {loading ? "Sending..." : <><i className="fa-solid fa-paper-plane" /> Send Message</>}
               </motion.button>
             </form>
           </AnimatedSection>

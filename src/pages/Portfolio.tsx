@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 import poster1 from "@/assets/poster1.png";
@@ -126,7 +125,6 @@ const Portfolio = () => {
                 className="group"
               >
                 <div className="rounded-xl overflow-hidden border border-border/30 hover-lift bg-card/30">
-                  {/* Image */}
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={project.image}
@@ -140,7 +138,7 @@ const Portfolio = () => {
                             to={project.link}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
                           >
-                            View Site <ExternalLink size={12} />
+                            View Site <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
                           </Link>
                         ) : (
                           <a
@@ -149,14 +147,13 @@ const Portfolio = () => {
                             rel="noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
                           >
-                            View Project <ExternalLink size={12} />
+                            View Project <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
                           </a>
                         )
                       )}
                     </div>
                   </div>
 
-                  {/* Info */}
                   <div className="p-5">
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-primary">{project.category}</span>
                     <h3 className="font-display text-base font-semibold mt-1 mb-2 group-hover:text-primary transition-colors">{project.title}</h3>

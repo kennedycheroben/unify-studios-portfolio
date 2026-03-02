@@ -1,34 +1,33 @@
-import { Code, Palette, PenTool, Film, Layers, Layout } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 const services = [
   {
-    icon: Code,
+    icon: "fa-solid fa-code",
     title: "Web Development",
     items: ["Responsive Websites", "E-commerce Solutions", "Landing Pages", "Web Applications", "SEO Optimization", "Automation Workflows"],
   },
   {
-    icon: Palette,
+    icon: "fa-solid fa-pen-nib",
     title: "Logo Design",
     items: ["Brand Logos", "Monogram Logos", "Wordmark Logos", "Icon-based Logos", "Logo Redesign", "Logo Guidelines"],
   },
   {
-    icon: Layout,
+    icon: "fa-solid fa-image",
     title: "Poster & Flyer Design",
     items: ["Event Posters", "Product Flyers", "Concert Posters", "Promotional Flyers", "Billboard Design", "Print-ready Files"],
   },
   {
-    icon: PenTool,
+    icon: "fa-solid fa-pen-ruler",
     title: "Branding & Identity",
     items: ["Brand Strategy", "Visual Identity", "Business Cards", "Stationery Design", "Brand Guidelines", "Packaging Design"],
   },
   {
-    icon: Film,
+    icon: "fa-solid fa-film",
     title: "Motion Graphics",
     items: ["Product Animations", "Explainer Videos", "Social Media Videos", "Logo Animations", "Title Sequences", "Kinetic Typography"],
   },
   {
-    icon: Layers,
+    icon: "fa-solid fa-layer-group",
     title: "UI/UX Design",
     items: ["Wireframing", "Prototyping", "User Research", "Interface Design", "Design Systems", "Usability Testing"],
   },
@@ -52,7 +51,7 @@ const Services = () => {
             <AnimatedSection key={service.title} delay={i * 0.1}>
               <div className="glass-card p-7 hover-lift group h-full">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="text-primary" size={24} />
+                  <i className={`${service.icon} text-primary text-xl`} />
                 </div>
                 <h3 className="font-display text-lg font-semibold mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
                 <ul className="space-y-2">
@@ -68,7 +67,6 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Pricing Note */}
         <AnimatedSection className="mt-16 text-center">
           <div className="glass-card inline-block px-8 py-6 glow-border">
             <p className="text-muted-foreground text-sm">
