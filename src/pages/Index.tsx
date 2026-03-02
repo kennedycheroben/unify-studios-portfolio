@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code, Palette } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import TypingEffect from "@/components/TypingEffect";
 import kenImage from "@/assets/ken.png";
 import logo from "@/assets/logo.png";
 
@@ -10,14 +10,12 @@ const Index = () => {
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background with ken image overlay */}
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-10"
             style={{ backgroundImage: `url(${kenImage})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary/10" />
-          {/* Floating orbs */}
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-1/4 left-1/6 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
         </div>
@@ -42,8 +40,10 @@ const Index = () => {
                 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight"
               >
                 Professional{" "}
-                <span className="text-gradient">Web Developer</span>{" "}
-                &amp; Graphic Designer
+                <TypingEffect
+                  words={["Web Developer", "Graphic Designer", "Brand Strategist"]}
+                  className="text-gradient"
+                />
               </motion.h1>
 
               <motion.p
@@ -65,7 +65,7 @@ const Index = () => {
                   to="/portfolio"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-display font-semibold text-sm tracking-wide hover:shadow-[0_0_30px_hsl(217_91%_60%/0.4)] transition-all duration-300 hover:-translate-y-1"
                 >
-                  View My Work <ArrowRight size={16} />
+                  View My Work <i className="fa-solid fa-arrow-right text-xs" />
                 </Link>
                 <Link
                   to="/contact"
@@ -76,7 +76,6 @@ const Index = () => {
               </motion.div>
             </div>
 
-            {/* Hero Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -108,7 +107,7 @@ const Index = () => {
             <AnimatedSection delay={0.1} direction="left">
               <div className="glass-card p-8 hover-lift group">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <Code className="text-primary" size={28} />
+                  <i className="fa-solid fa-code text-primary text-2xl" />
                 </div>
                 <h3 className="font-display text-xl font-semibold mb-3">Web Development</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
@@ -120,7 +119,7 @@ const Index = () => {
             <AnimatedSection delay={0.2} direction="right">
               <div className="glass-card p-8 hover-lift group">
                 <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                  <Palette className="text-accent" size={28} />
+                  <i className="fa-solid fa-palette text-accent text-2xl" />
                 </div>
                 <h3 className="font-display text-xl font-semibold mb-3">Graphic Design</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
