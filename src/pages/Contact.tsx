@@ -2,6 +2,7 @@ import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { toast } from "sonner";
+import { supabase } from "../lib/supabase";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -14,10 +15,30 @@ const Contact = () => {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    toast.success("Message sent! I'll get back to you soon.");
-    setForm({ name: "", email: "", subject: "", message: "" });
-    setLoading(false);
+
+    try {
+      const payload = {
+        name: form.name,
+        email: form.email,
+        subject: form.subject || null,
+        message: form.message,
+      };
+
+      const { data, error } = await supabase.from("messages").insert([payload]);
+
+      if (error) {
+        console.error("Supabase insert error:", error);
+        toast.error("Failed to send message. Please try again later.");
+      } else {
+        toast.success("Message sent! I'll get back to you soon.");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

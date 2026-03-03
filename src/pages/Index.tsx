@@ -41,7 +41,7 @@ const Index = () => {
               >
                 Professional{" "}
                 <TypingEffect
-                  words={["Web Developer", "Graphic Designer", "Brand Strategist"]}
+                  words={["Frontend Web Developer", "Graphic Designer", "Brand Strategist"]}
                   className="text-gradient"
                 />
               </motion.h1>
@@ -109,7 +109,7 @@ const Index = () => {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <i className="fa-solid fa-code text-primary text-2xl" />
                 </div>
-                <h3 className="font-display text-xl font-semibold mb-3">Web Development</h3>
+                <h3 className="font-display text-xl font-semibold mb-3">Frontend Development</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Building responsive, fast, and modern websites with HTML, CSS, JavaScript, and automation workflows.
                 </p>
@@ -156,7 +156,7 @@ const Index = () => {
               {
                 name: "Amina Hassan",
                 role: "Marketing Director, Bloom Co.",
-                text: "From branding to web development, Kennedy handled everything with professionalism. The final product was polished, modern, and exactly what we needed.",
+                text: "From branding to frontend development, Kennedy handled everything with professionalism. The final product was polished, modern, and exactly what we needed.",
                 stars: 4,
               },
             ].map((t, i) => (

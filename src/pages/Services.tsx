@@ -3,7 +3,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 const services = [
   {
     icon: "fa-solid fa-code",
-    title: "Web Development",
+  title: "Frontend Development",
     items: ["Responsive Websites", "E-commerce Solutions", "Landing Pages", "Web Applications", "SEO Optimization", "Automation Workflows"],
   },
   {

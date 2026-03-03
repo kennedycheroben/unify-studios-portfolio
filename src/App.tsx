@@ -29,6 +29,7 @@ import ElectronicsServices from "./pages/electronics/ElectronicsServices";
 import ElectronicsAbout from "./pages/electronics/ElectronicsAbout";
 import ElectronicsContact from "./pages/electronics/ElectronicsContact";
 import ElectronicsCart from "./pages/electronics/ElectronicsCart";
+import AdminPortal from "./pages/AdminPortal";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const App = () => (
           </Route>
 
           <Route path="*" element={<NotFound />} />
+          <Route path="/admin-secret-portal" element={<AdminPortal />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

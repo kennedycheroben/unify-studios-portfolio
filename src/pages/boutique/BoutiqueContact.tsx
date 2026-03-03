@@ -16,7 +16,7 @@ const BoutiqueContact = () => {
     <section className="max-w-6xl mx-auto px-6 py-16">
       <div className="text-center mb-14">
         <h1 className="text-3xl font-bold mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Contact Us</h1>
-        <p className="text-sm" style={{ color: "#7a7064" }}>We'd love to hear from you</p>
+  <p className="text-sm" style={{ color: "#7a7064" }}>We'd like to hear from you</p>
       </div>
       <div className="grid md:grid-cols-2 gap-12">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>

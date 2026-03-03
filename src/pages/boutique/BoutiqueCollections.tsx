@@ -3,6 +3,30 @@ import { motion } from "framer-motion";
 import { Star, Heart, Filter } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { boutiqueProducts, boutiqueCategories } from "./boutiqueData";
+
+// Dynamically load available asset files so we can match product names to newly added images.
+const rawAssets = import.meta.glob('/src/assets/*.{png,jpg,jpeg,webp,avif}', { eager: true }) as Record<string, any>;
+const assetFileMap: Record<string, string> = Object.keys(rawAssets).reduce((acc, p) => {
+  const file = p.split('/').pop()?.toLowerCase() || p;
+  const url = rawAssets[p]?.default ?? rawAssets[p];
+  acc[file] = url;
+  return acc;
+}, {} as Record<string, string>);
+
+const findMatchingImage = (name: string) => {
+  if (!name) return undefined;
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-') ;
+  // try common extensions
+  const exts = ['png','jpg','jpeg','webp','avif'];
+  for (const ext of exts) {
+    const candidate = `${slug}.${ext}`;
+    if (assetFileMap[candidate]) return assetFileMap[candidate];
+  }
+  // try contains match
+  const keys = Object.keys(assetFileMap);
+  const found = keys.find(k => k.includes(slug));
+  return found ? assetFileMap[found] : undefined;
+};
 import { toast } from "sonner";
 
 const BoutiqueCollections = () => {
@@ -51,7 +75,12 @@ const BoutiqueCollections = () => {
             style={{ borderColor: "#e8e0d5", background: "#fff" }}
           >
             <div className="relative aspect-square overflow-hidden">
-              <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              {/* prefer a newly added image that matches the product name; fall back to the bundled image */}
+              <img
+                src={findMatchingImage(item.name) ?? item.image}
+                alt={item.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
               <button className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "rgba(255,255,255,0.9)" }}>
                 <Heart size={16} style={{ color: "#8b6914" }} />
               </button>

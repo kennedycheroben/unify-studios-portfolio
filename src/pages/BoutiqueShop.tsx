@@ -6,6 +6,27 @@ import boutiqueHero from "@/assets/boutique-hero.png";
 import product1 from "@/assets/boutique-product1.png";
 import product2 from "@/assets/boutique-product2.png";
 
+// dynamic asset map to prefer newly added product images matching product names
+const _rawBoutiqueAssets = import.meta.glob('/src/assets/*.{png,jpg,jpeg,webp,avif}', { eager: true }) as Record<string, any>;
+const _boutiqueAssetMap: Record<string, string> = Object.keys(_rawBoutiqueAssets).reduce((acc, p) => {
+  const file = p.split('/').pop()?.toLowerCase() || p;
+  const url = _rawBoutiqueAssets[p]?.default ?? _rawBoutiqueAssets[p];
+  acc[file] = url;
+  return acc;
+}, {} as Record<string, string>);
+
+const _findImageForName = (name: string) => {
+  if (!name) return undefined;
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const exts = ['png','jpg','jpeg','webp','avif'];
+  for (const ext of exts) {
+    const candidate = `${slug}.${ext}`;
+    if (_boutiqueAssetMap[candidate]) return _boutiqueAssetMap[candidate];
+  }
+  const found = Object.keys(_boutiqueAssetMap).find(k => k.includes(slug));
+  return found ? _boutiqueAssetMap[found] : undefined;
+};
+
 const navItems = ["Home", "Collections", "Services", "About", "Contact"];
 
 const collections = [
@@ -99,8 +120,8 @@ const BoutiqueShop = () => {
               className="group rounded-xl overflow-hidden border transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
               style={{ borderColor: "#e8e0d5", background: "#fff" }}
             >
-              <div className="relative aspect-square overflow-hidden">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="relative aspect-square overflow-hidden">
+                <img src={_findImageForName(item.name) ?? item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <button className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "rgba(255,255,255,0.9)" }}>
                   <Heart size={16} style={{ color: "#8b6914" }} />
                 </button>

@@ -4,7 +4,7 @@ import kenImage from "@/assets/ken.png";
 import logo from "@/assets/logo.png";
 
 const skills = {
-  "Web Development": [
+  "Frontend Development": [
     { name: "React", icon: "fa-brands fa-react" },
     { name: "TypeScript", icon: "fa-brands fa-js" },
     { name: "HTML5", icon: "fa-brands fa-html5" },
@@ -62,17 +62,17 @@ const About = () => {
             <h2 className="text-3xl font-display font-bold">Kennedy Cheroben</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate web developer and graphic designer based in Kenya, operating under the creative brand 
+                I'm a passionate frontend web developer and graphic designer based in Kenya, operating under the creative brand 
                 <span className="text-primary font-semibold"> Unify Studios</span>. My mission is to unify aesthetics and 
                 functionality into seamless digital experiences.
               </p>
               <p>
-                With expertise spanning web development and visual design, I bring a unique perspective to every project. 
+                With expertise spanning frontend development and visual design, I bring a unique perspective to every project. 
                 From coding responsive websites to crafting compelling brand identities, I believe in the power of design 
                 to inspire, connect, and transform businesses.
               </p>
               <p>
-                Whether it's building a dynamic e-commerce platform or creating eye-catching motion graphics, I pour 
+                Whether it's building a dynamic web platforms or creating eye-catching motion graphics, I pour 
                 creativity and technical precision into every pixel and line of code.
               </p>
             </div>

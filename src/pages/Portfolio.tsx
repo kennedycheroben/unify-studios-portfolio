@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -6,19 +6,19 @@ import AnimatedSection from "@/components/AnimatedSection";
 import poster1 from "@/assets/poster1.png";
 import flyer1 from "@/assets/flyer1.png";
 import branding1 from "@/assets/branding1.png";
-import motion1 from "@/assets/motion1.png";
 import logoDesign1 from "@/assets/logo-design1.png";
-import explainer1 from "@/assets/explainer1.png";
+import unifyvideo from "@/assets/videos/unifyvideo.mp4";
+import productLaunch from "@/assets/videos/Product Launch Animation.mp4";
 import boutiqueHero from "@/assets/boutique-hero.png";
 import electronicsHero from "@/assets/electronics-hero.png";
 
-const categories = ["All", "Web Development", "Graphic Design", "Branding", "Motion Design"];
+const categories = ["All", "Frontend Development", "Graphic Design", "Branding", "Motion Design"];
 
 const projects = [
   {
     id: 1,
     title: "Ëlegance Boutique",
-    category: "Web Development",
+  category: "Frontend Development",
     description: "A luxury fashion boutique e-commerce website based in Nairobi. Full responsive design with product catalog, services, and contact pages.",
     image: boutiqueHero,
     link: "/boutique-shop",
@@ -27,7 +27,7 @@ const projects = [
   {
     id: 2,
     title: "TechWave Electronics",
-    category: "Web Development",
+  category: "Frontend Development",
     description: "A modern electronics retail website for a Mombasa-based store. Complete with product showcase, services, and customer support.",
     image: electronicsHero,
     link: "/electronics-shop",
@@ -66,21 +66,33 @@ const projects = [
     title: "Product Launch Animation",
     category: "Motion Design",
     description: "3D product showcase animation for a smartphone launch with dynamic particle effects and cinematic lighting.",
-    image: motion1,
+    video: productLaunch,
   },
   {
     id: 8,
     title: "Business Explainer Video",
     category: "Motion Design",
     description: "Animated explainer video with 2D character animation illustrating business workflows and team collaboration.",
-    image: explainer1,
+    video: unifyvideo,
   },
 ];
 
 const Portfolio = () => {
   const [active, setActive] = useState("All");
+  const [selected, setSelected] = useState<any | null>(null);
 
   const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
+
+  const openProject = (project: any) => setSelected(project);
+  const closeProject = () => setSelected(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeProject();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected]);
 
   return (
     <section className="section-padding">
@@ -90,7 +102,7 @@ const Portfolio = () => {
             My <span className="text-gradient">Portfolio</span>
           </h1>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            A showcase of my best work across web development, graphic design, branding, and motion design
+            A showcase of my best work across frontend development, graphic design, branding, and motion design
           </p>
         </AnimatedSection>
 
@@ -123,34 +135,52 @@ const Portfolio = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.25, delay: i * 0.03 }}
                 className="group"
+                onClick={() => openProject(project)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') openProject(project); }}
               >
                 <div className="rounded-xl overflow-hidden border border-border/30 hover-lift bg-card/30">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {project.video ? (
+                      <video
+                        src={project.video}
+                        aria-label={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        playsInline
+                        muted
+                        loop
+                        autoPlay
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-4">
                       {project.link && (
-                        project.isInternal ? (
-                          <Link
-                            to={project.link}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
-                          >
-                            View Site <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
-                          </Link>
-                        ) : (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
-                          >
-                            View Project <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
-                          </a>
-                        )
-                      )}
+                          project.isInternal ? (
+                            <Link
+                              to={project.link}
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View Site <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+                            </Link>
+                          ) : (
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View Project <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+                            </a>
+                          )
+                        )}
                     </div>
                   </div>
 
@@ -165,8 +195,61 @@ const Portfolio = () => {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Fullscreen viewer modal */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={closeProject}
+        >
+          <div
+            className="relative w-full max-w-5xl max-h-[90vh] bg-card rounded-lg overflow-hidden shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              aria-label="Close viewer"
+              onClick={closeProject}
+              className="absolute top-3 right-3 z-10 inline-flex items-center justify-center h-9 w-9 rounded-full bg-background/80 text-foreground"
+            >
+              ✕
+            </button>
+
+            <div className="w-full h-[70vh] bg-black flex items-center justify-center">
+              {selected.video ? (
+                <video
+                  src={selected.video}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain bg-black"
+                />
+              ) : (
+                <img src={selected.image} alt={selected.title} className="w-full h-full object-contain" />
+              )}
+            </div>
+
+            <div className="p-5">
+              <h3 className="font-display text-lg font-semibold mb-2">{selected.title}</h3>
+              <p className="text-sm text-muted-foreground mb-3">{selected.description}</p>
+              {selected.link && (
+                selected.isInternal ? (
+                  <Link to={selected.link} onClick={closeProject} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold">
+                    View Site
+                  </Link>
+                ) : (
+                  <a href={selected.link} target="_blank" rel="noreferrer" onClick={closeProject} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold">
+                    View Project
+                  </a>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 export default Portfolio;
+
