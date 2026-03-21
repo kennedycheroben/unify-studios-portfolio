@@ -58,7 +58,7 @@ const Contact = () => {
             <div className="glass-card p-6 space-y-6">
               <h3 className="font-display text-lg font-semibold">Contact Info</h3>
               <div className="space-y-5 text-sm">
-                <a href="mailto:kennedycheroben001@gmail.com" className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                <a href="mailto:unifystudiosken@gmail.com" className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
                   <i className="fa-solid fa-envelope text-primary mt-1" />
                   <div>
                     <p className="font-medium text-foreground">Email</p>
