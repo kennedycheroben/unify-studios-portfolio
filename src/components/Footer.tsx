@@ -39,8 +39,8 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-display text-sm font-semibold uppercase tracking-widest text-primary">Get In Touch</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="mailto:kennedycheroben001@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                <i className="fa-solid fa-envelope text-xs" /> kennedycheroben001@gmail.com
+              <a href="mailto:unifystudiosken@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
+                <i className="fa-solid fa-envelope text-xs" /> unifystudiosken@gmail.com
               </a>
               <a href="https://wa.me/254792399815" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
                 <i className="fa-brands fa-whatsapp text-xs" /> +254 792 399 815
