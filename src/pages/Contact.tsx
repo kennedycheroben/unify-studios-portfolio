@@ -62,7 +62,7 @@ const Contact = () => {
                   <i className="fa-solid fa-envelope text-primary mt-1" />
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p>kennedycheroben001@gmail.com</p>
+                    <p>unifystudiosken@gmail.com</p>
                   </div>
                 </a>
                 <a href="https://wa.me/254792399815" target="_blank" rel="noreferrer" className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
